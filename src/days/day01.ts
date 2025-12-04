@@ -1,5 +1,9 @@
+const RANGE_MIN = 0;
+const RANGE_MAX = 100;
+const STARTING_POSITION = 50;
+
 export function part1(input: string): number | string {
-  let index = 50;
+  let index = STARTING_POSITION;
   let count = 0;
 
   const lines = input.trim().split('\n');
@@ -9,12 +13,12 @@ export function part1(input: string): number | string {
     const value = parseInt(line.slice(1), 10);
 
     if (direction === 'L') {
-      index = mod(index - value, 100);
+      index = mod(index - value, RANGE_MAX);
     } else {
-      index = (index + value) % 100;
+      index = (index + value) % RANGE_MAX;
     }
 
-    if (index === 0) {
+    if (index === RANGE_MIN) {
       count += 1;
     }
   }
@@ -23,7 +27,7 @@ export function part1(input: string): number | string {
 }
 
 export function part2(input: string): number | string {
-  let index = 50;
+  let index = STARTING_POSITION;
   let count = 0;
 
   const lines = input.trim().split('\n');
@@ -34,15 +38,15 @@ export function part2(input: string): number | string {
 
     if (direction === 'L') {
       for (let i = 0; i < value; i++) {
-        index = mod(index - 1, 100);
-        if (index === 0) {
+        index = mod(index - 1, RANGE_MAX);
+        if (index === RANGE_MIN) {
           count += 1;
         }
       }
     } else {
       for (let i = 0; i < value; i++) {
-        index = (index + 1) % 100;
-        if (index === 0) {
+        index = (index + 1) % RANGE_MAX;
+        if (index === RANGE_MIN) {
           count += 1;
         }
       }
