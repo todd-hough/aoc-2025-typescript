@@ -13,6 +13,9 @@ src/**/*.js.map
 # Test coverage
 coverage/
 
+# ESLint cache
+.eslintcache
+
 # IDE
 .vscode/
 .idea/

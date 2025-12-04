@@ -35,7 +35,7 @@ async function main() {
 
   try {
     // Dynamically import the day's solution
-    const solution: DaySolution = await import(`./days/day${paddedDay}`);
+    const solution = (await import(`./days/day${paddedDay}`)) as DaySolution;
 
     // Read input
     const input = readInput(day);
@@ -71,4 +71,4 @@ async function main() {
   }
 }
 
-main();
+void main();

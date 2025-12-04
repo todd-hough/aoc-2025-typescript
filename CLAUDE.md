@@ -51,7 +51,7 @@ This file contains important restrictions and design decisions for this project.
 ### Required Tooling
 - **Testing**: Jest (configured)
 - **Formatting**: Prettier (configured)
-- **Linting**: TypeScript compiler (built-in via `tsc`)
+- **Linting**: ESLint with TypeScript support (configured) + TypeScript compiler (built-in via `tsc`)
 
 ### Project Structure
 
@@ -109,6 +109,8 @@ npm run solve -- <day> 2      # Part 2 only
 ```bash
 npm run typecheck   # Run TypeScript type checking without building
 npm run build       # Compile and type check
+npm run lint        # Run ESLint to check code quality
+npm run lint:fix    # Run ESLint and auto-fix issues
 npm run format      # Format code with Prettier
 npm test            # Run all tests
 npm run test:watch  # Run tests in watch mode
@@ -138,7 +140,7 @@ Located in `src/utils/input.ts`:
 1. ✅ Solution implemented
 2. ✅ Tests written and passing
 3. ✅ Code formatted
-4. ✅ Code linted (type checking passes)
+4. ✅ Code linted (ESLint and type checking pass)
 5. ✅ Solution runs successfully with actual input
 6. ✅ Documentation updated
 
@@ -163,6 +165,7 @@ Located in `src/utils/input.ts`:
 6. **Run quality checks** (in order):
    ```bash
    npm run typecheck    # Must pass
+   npm run lint         # Must pass
    npm run format       # Auto-format code
    npm test             # All tests must pass
    npm run solve -- X   # Verify with actual input

@@ -74,6 +74,16 @@ Type check your code:
 npm run typecheck
 ```
 
+Lint your code with ESLint:
+```bash
+npm run lint
+```
+
+Auto-fix linting issues:
+```bash
+npm run lint:fix
+```
+
 Format code with Prettier:
 ```bash
 npm run format
@@ -99,6 +109,7 @@ npm run build
 6. Run quality checks:
    ```bash
    npm run typecheck    # Type check
+   npm run lint         # Lint code
    npm run format       # Format code
    npm test             # Run tests
    npm run solve -- <day>  # Run with actual input
@@ -135,6 +146,7 @@ The `src/utils/input.ts` file provides helpful functions:
 ## Features
 
 - **Strong TypeScript type checking** with strict mode enabled
+- **Linting** with ESLint for code quality and best practices
 - **Testing** with Jest for reliable solutions
 - **Code formatting** with Prettier for consistent style
 - **Performance timing** for each part
