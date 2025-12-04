@@ -37,14 +37,14 @@ export function part2(input: string): number | string {
     const value = parseInt(line.slice(1), 10);
 
     if (direction === 'L') {
-      for (let i = 0; i < value; i++) {
+      for (let i = RANGE_MIN; i < value; i++) {
         index = mod(index - 1, RANGE_MAX);
         if (index === RANGE_MIN) {
           count += 1;
         }
       }
     } else {
-      for (let i = 0; i < value; i++) {
+      for (let i = RANGE_MIN; i < value; i++) {
         index = (index + 1) % RANGE_MAX;
         if (index === RANGE_MIN) {
           count += 1;
