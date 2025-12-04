@@ -1,7 +1,7 @@
-const tseslint = require('@typescript-eslint/eslint-plugin');
-const tsparser = require('@typescript-eslint/parser');
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsparser from '@typescript-eslint/parser';
 
-module.exports = [
+export default [
   {
     files: ['src/**/*.ts'],
     languageOptions: {
@@ -24,6 +24,7 @@ module.exports = [
     rules: {
       ...tseslint.configs['recommended'].rules,
       ...tseslint.configs['recommended-requiring-type-checking'].rules,
+      ...tseslint.configs['strict-type-checked'].rules,
 
       // Enforce idiomatic TypeScript
       '@typescript-eslint/explicit-function-return-type': 'off',
@@ -43,7 +44,7 @@ module.exports = [
       // Prefer template literals
       'prefer-template': 'warn',
       // Require === and !==
-      'eqeqeq': ['error', 'always'],
+      eqeqeq: ['error', 'always'],
       // No console.log in production code (warnings for AOC are acceptable)
       'no-console': 'off',
     },
@@ -55,8 +56,8 @@ module.exports = [
       'coverage/**',
       '**/*.js',
       '**/*.config.js',
+      '**/*.config.mjs',
       'jest.config.js',
-      'eslint.config.js',
     ],
   },
 ];

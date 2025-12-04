@@ -40,7 +40,7 @@ async function main() {
     // Read input
     const input = readInput(day);
 
-    console.log(`\n=== Day ${day} ===\n`);
+    console.log(`\n=== Day ${String(day)} ===\n`);
 
     // Run requested part(s)
     if (part === null || part === 1) {
@@ -48,7 +48,7 @@ async function main() {
       const start1 = performance.now();
       const result1 = solution.part1(input);
       const end1 = performance.now();
-      console.log(`Result: ${result1}`);
+      console.log(`Result: ${String(result1)}`);
       console.log(`Time: ${(end1 - start1).toFixed(3)}ms\n`);
     }
 
@@ -57,12 +57,12 @@ async function main() {
       const start2 = performance.now();
       const result2 = solution.part2(input);
       const end2 = performance.now();
-      console.log(`Result: ${result2}`);
+      console.log(`Result: ${String(result2)}`);
       console.log(`Time: ${(end2 - start2).toFixed(3)}ms\n`);
     }
   } catch (error) {
     if (error instanceof Error && 'code' in error && error.code === 'MODULE_NOT_FOUND') {
-      console.error(`Error: Solution for day ${day} not found`);
+      console.error(`Error: Solution for day ${String(day)} not found`);
       console.error(`Expected file: src/days/day${paddedDay}.ts`);
     } else {
       console.error('Error running solution:', error);
