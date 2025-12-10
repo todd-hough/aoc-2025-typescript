@@ -38,6 +38,40 @@ export function part1(input: string): number | string {
   return sum;
 }
 
-export function part2(_input: string): number | string {
-  return 0;
+function generatePeriodicNumbers(max: number): number[] {
+  const periodic = new Set<number>();
+  const maxDigits = max.toString().length;
+
+  for (let patternLen = 1; patternLen <= maxDigits / 2; patternLen++) {
+    const minPattern = patternLen === 1 ? 1 : 10 ** (patternLen - 1);
+    const maxPattern = 10 ** patternLen - 1;
+
+    for (let p = minPattern; p <= maxPattern; p++) {
+      const ps = p.toString();
+      let repeated = ps + ps;
+      let num = parseInt(repeated, 10);
+
+      while (num <= max) {
+        periodic.add(num);
+        repeated += ps;
+        num = parseInt(repeated, 10);
+      }
+    }
+  }
+  return [...periodic].sort((a, b) => a - b);
+}
+
+export function part2(input: string): number | string {
+  const ranges = parseRanges(input);
+  const maxVal = Math.max(...ranges.map(([, hi]) => hi));
+  const periodic = generatePeriodicNumbers(maxVal);
+
+  let sum = 0;
+  for (const [lo, hi] of ranges) {
+    for (const d of periodic) {
+      if (d > hi) break;
+      if (d >= lo) sum += d;
+    }
+  }
+  return sum;
 }
