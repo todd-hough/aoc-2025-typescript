@@ -16,8 +16,8 @@ function parseRanges(input: string): [number, number][] {
   return input
     .trim()
     .split(',')
-    .filter((s) => s.length > 0)
-    .map((r) => {
+    .filter(s => s.length > 0)
+    .map(r => {
       const [lo, hi] = r.split('-').map(Number);
       return [lo, hi];
     });
