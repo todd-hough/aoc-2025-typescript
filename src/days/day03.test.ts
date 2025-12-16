@@ -1,4 +1,4 @@
-import { part1, solveBank } from './day03';
+import { part1, part2, solveBank, solveBankPart2 } from './day03';
 
 describe('Day 03', () => {
   describe('solveBank (Suffix Max Logic)', () => {
@@ -42,6 +42,37 @@ describe('Day 03', () => {
 
     it('matches the example total', () => {
       expect(part1(exampleInput)).toBe(357);
+    });
+  });
+
+  describe('solveBankPart2 (Greedy Stack Logic)', () => {
+    it('finds 987654321111 for first example', () => {
+      expect(solveBankPart2('987654321111111')).toBe(987654321111);
+    });
+
+    it('finds 811111111119 for second example', () => {
+      expect(solveBankPart2('811111111111119')).toBe(811111111119);
+    });
+
+    it('finds 434234234278 for third example', () => {
+      expect(solveBankPart2('234234234234278')).toBe(434234234278);
+    });
+
+    it('finds 888911112111 for fourth example', () => {
+      expect(solveBankPart2('818181911112111')).toBe(888911112111);
+    });
+  });
+
+  describe('Part 2 Example', () => {
+    const exampleInput = `
+987654321111111
+811111111111119
+234234234234278
+818181911112111
+`.trim();
+
+    it('matches the example total', () => {
+      expect(part2(exampleInput)).toBe(3121910778619);
     });
   });
 });

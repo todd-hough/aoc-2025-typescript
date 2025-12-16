@@ -53,6 +53,41 @@ export function part1(input: string): number {
   }, 0);
 }
 
-export function part2(_input: string): number | string {
-  return 0;
+export function part2(input: string): number | string {
+  const lines = input.trim().split(/\r?\n/);
+  return lines.reduce((sum, line) => {
+    if (!line.trim()) return sum;
+    return sum + solveBankPart2(line.trim());
+  }, 0);
+}
+
+/**
+ * Finds the lexicographically largest subsequence of length 12.
+ * Uses a Greedy Monotonic Stack approach.
+ * Time Complexity: O(N)
+ * Space Complexity: O(K) where K=12
+ */
+export function solveBankPart2(line: string): number {
+  const digits = line.split('').map(Number);
+  const n = digits.length;
+  const k = 12;
+
+  if (n < k) return 0;
+
+  const stack: number[] = [];
+  let remainingToDrop = n - k;
+
+  for (const digit of digits) {
+    while (remainingToDrop > 0 && stack.length > 0 && stack[stack.length - 1] < digit) {
+      stack.pop();
+      remainingToDrop--;
+    }
+    stack.push(digit);
+  }
+
+  // If we didn't drop enough (e.g. descending sequence), drop from end
+  // Effectively taking the first k elements of the stack
+  const resultDigits = stack.slice(0, k);
+
+  return parseInt(resultDigits.join(''), 10);
 }
