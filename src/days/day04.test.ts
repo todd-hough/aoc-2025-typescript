@@ -59,8 +59,49 @@ describe('Day 04', () => {
   });
 
   describe('Part 2', () => {
-    it('returns 0 (not implemented)', () => {
-      expect(part2('test')).toBe(0);
+    it('matches the example from the problem statement', () => {
+      const exampleInput = `
+..@@.@@@@.
+@@@.@.@.@@
+@@@@@.@.@@
+@.@@@@..@.
+@@.@@@@.@@
+.@@@@@@@.@
+.@.@.@.@@@
+@.@@@.@@@@
+.@@@@@@@@.
+@.@.@@@.@.
+      `.trim();
+
+      expect(part2(exampleInput)).toBe(43);
+    });
+
+    it('removes a single roll with no neighbors', () => {
+      expect(part2('@')).toBe(1);
+    });
+
+    it('removes all rolls from a 3x3 grid iteratively', () => {
+      const input = `
+@@@
+@@@
+@@@
+      `.trim();
+
+      // All 9 rolls should eventually be removed
+      // First pass: 4 corners (3 neighbors each)
+      // Second pass: 4 edges (now have <4 neighbors)
+      // Third pass: 1 center
+      expect(part2(input)).toBe(9);
+    });
+
+    it('returns 0 for a grid with no rolls', () => {
+      const input = `
+...
+...
+...
+      `.trim();
+
+      expect(part2(input)).toBe(0);
     });
   });
 });
